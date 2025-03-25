@@ -46,11 +46,18 @@ const styles = {
     marginBottom: "20px",
     color: "#051766 !important", // 🔥 강제 적용
   },
+  statusMessage: {
+    marginTop: "12px",
+    fontSize: "18px",
+    fontWeight: "bold",
+    color: "#051766",
+  },
 };
 
 export default function KoreanAirLMSCounter() {
   const [text, setText] = useState("");
   const [byteCount, setByteCount] = useState(0);
+  const [status, setStatus] = useState(""); // 상태 메시지 추가
   const maxBytes = 2760;
 
   const calculateBytes = (input) => {
@@ -63,6 +70,14 @@ export default function KoreanAirLMSCounter() {
     const bytes = calculateBytes(inputText);
     setText(inputText);
     setByteCount(bytes);
+  };
+
+  const handleClick = () => {
+    if (byteCount <= maxBytes) {
+      setStatus("OK TO GO!"); // 한도 이내일 경우
+    } else {
+      setStatus("Too Many Bytes!"); // 한도 초과일 경우
+    }
   };
 
   return (
@@ -81,12 +96,18 @@ export default function KoreanAirLMSCounter() {
         <div style={styles.byteCount}>
           바이트 수: {byteCount} / {maxBytes}
         </div>
+
+        {/* 검증 완료 버튼 */}
         <button
           style={styles.button}
           disabled={byteCount > maxBytes}
+          onClick={handleClick} // 버튼 클릭 시 상태 메시지 변경
         >
           검증 완료
         </button>
+
+        {/* 상태 메시지 */}
+        {status && <div style={styles.statusMessage}>{status}</div>}
       </div>
     </div>
   );
