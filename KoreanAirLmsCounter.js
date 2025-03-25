@@ -85,15 +85,15 @@ export default function KoreanAirLMSCounter() {
       {/* 🔹 상단 제목 */}
       <h1 style={styles.header}>Korean Air x Insider LMS Text Counter</h1>
 
-      {/* 🔹 입력창 및 바이트 카운터 */}
-      <div className="w-full max-w-full p-6 shadow-lg rounded-lg bg-white">
+     {/* 🔹 입력창 & 바이트 카운터 & 버튼 */}
+      <div className="w-full max-w-[1600px] p-6 shadow-lg rounded-lg bg-white">
         <textarea
           placeholder="메시지를 입력하세요..."
           value={text}
           onChange={handleChange}
           style={styles.textarea}
         />
-        <div style={styles.byteCount}>
+      <div style={styles.byteCount} className="mb-4">
           바이트 수: {byteCount} / {maxBytes}
         </div>
 
