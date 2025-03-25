@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Card, CardContent } from "../components/ui/card";
-import { Textarea } from "../components/ui/textarea";
-import { Button } from "../components/ui/button";
+import { Card, CardContent } from "../components/ui/card";  // 상대경로로 수정
+import { Textarea } from "../components/ui/textarea";  // 상대경로로 수정
+import { Button } from "../components/ui/button";  // 상대경로로 수정
 
 export default function KoreanAirLMSCounter() {
   const [text, setText] = useState("");
@@ -21,46 +21,33 @@ export default function KoreanAirLMSCounter() {
   };
 
   return (
-    <div className="flex flex-col items-center p-6" style={{ backgroundColor: "#FFFFFF" }}>
-      {/* 왼쪽 KOREAN AIR 로고 추가 */}
-      <div className="flex justify-between w-full items-center mb-6">
+    <div className="flex flex-col items-center p-6">
+      <header className="flex justify-between items-center w-full">
         <img
-          src="https://www.koreanair.com/global/common/img/airline/logo_kr.png"
+          src="/KoreanAirLogo.png"  // 로고 경로, 프로젝트 내 저장된 위치에 맞게 수정
           alt="Korean Air Logo"
-          className="h-12"
+          className="w-16"
         />
-        <h1 className="text-2xl font-bold" style={{ color: "#051766", fontFamily: "'Noto Sans', sans-serif" }}>
-          Korean Air x Insider LMS Text Counter
-        </h1>
-        {/* 오른쪽 Insider 로고 추가 */}
+        <h1 className="text-2xl font-bold mb-4 text-[#051766]">Korean Air x Insider LMS Text Counter</h1>
         <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Insider_Logo.svg/2048px-Insider_Logo.svg.png"
+          src="/InsiderLogo.png"  // 로고 경로, 프로젝트 내 저장된 위치에 맞게 수정
           alt="Insider Logo"
-          className="h-12"
+          className="w-16"
         />
-      </div>
-
-      <Card className="w-full max-w-2xl p-4">
+      </header>
+      <Card className="w-full max-w-2xl p-4 bg-[#DBE2E9]">
         <CardContent>
-          {/* 입력창 배경색 변경 */}
           <Textarea
-            className="w-full h-40 p-2 border rounded"
+            className="w-full h-40 p-2 border rounded bg-[#DBE2E9]"
             placeholder="메시지를 입력하세요..."
             value={text}
             onChange={handleChange}
-            style={{ backgroundColor: "#DBE2E9" }}
           />
-          {/* 바이트 수 색상 변경 */}
-          <div className="mt-2 text-right font-semibold" style={{ color: "#051766" }}>
+          <div className="mt-2 text-right font-semibold text-[#051766]">
             바이트 수: {byteCount} / {maxBytes}
           </div>
-          {/* 버튼 배경색과 글자색 변경 */}
           <Button
-            className="mt-4 w-full"
-            style={{
-              backgroundColor: "#57BBEB",
-              color: "#051766",
-            }}
+            className="mt-4 w-full bg-[#57BBEB] text-[#051766] hover:bg-[#3a8dbf]"
             disabled={byteCount > maxBytes}
           >
             검증 완료
