@@ -38,11 +38,11 @@ export default function KoreanAirLMSCounter() {
       <Card className="w-full max-w-2xl p-4 bg-[#DBE2E9]">
         <CardContent>
           <Textarea
-            className="w-full h-40 p-2 border rounded bg-[#DBE2E9]"
-            placeholder="메시지를 입력하세요..."
-            value={text}
-            onChange={handleChange}
-          />
+  className="w-1/4 h-96 p-4 border border-gray-300 rounded-lg bg-[#DBE2E9] text-black resize-none"
+  value={text}
+  onChange={(e) => setText(e.target.value)}
+  placeholder="메시지를 입력하세요..."
+/>
           <div className="mt-2 text-right font-semibold text-[#051766]">
             바이트 수: {byteCount} / {maxBytes}
           </div>
