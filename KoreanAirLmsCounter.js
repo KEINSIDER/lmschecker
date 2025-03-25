@@ -1,7 +1,4 @@
 import { useState } from "react";
-import Card from "@/components/ui/card";
-import Textarea from "@/components/ui/textarea";
-import Button from "@/components/ui/button";
 
 export default function KoreanAirLMSCounter() {
   const [text, setText] = useState("");
@@ -21,39 +18,18 @@ export default function KoreanAirLMSCounter() {
   };
 
   return (
-    <div className="flex flex-col items-center p-6">
-      <header className="flex justify-between items-center w-full">
-        <img
-          src="/KoreanAirLogo.png"  // 로고 경로, 프로젝트 내 저장된 위치에 맞게 수정
-          alt="Korean Air Logo"
-          className="w-16"
-        />
-        <h1 className="text-2xl font-bold mb-4 text-[#051766]">Korean Air x Insider LMS Text Counter</h1>
-        <img
-          src="/InsiderLogo.png"  // 로고 경로, 프로젝트 내 저장된 위치에 맞게 수정
-          alt="Insider Logo"
-          className="w-16"
-        />
-      </header>
-      <Card className="w-full max-w-2xl p-4 bg-[#DBE2E9]">
-        <CardContent>
-          <Textarea
-  className="w-1/4 h-96 p-4 border border-gray-300 rounded-lg bg-[#DBE2E9] text-black resize-none"
-  value={text}
-  onChange={(e) => setText(e.target.value)}
-  placeholder="메시지를 입력하세요..."
-/>
-          <div className="mt-2 text-right font-semibold text-[#051766]">
-            바이트 수: {byteCount} / {maxBytes}
-          </div>
-          <Button
-            className="mt-4 w-full bg-[#57BBEB] text-[#051766] hover:bg-[#3a8dbf]"
-            disabled={byteCount > maxBytes}
-          >
-            검증 완료
-          </Button>
-        </CardContent>
-      </Card>
+    <div style={{ textAlign: "center", padding: "20px" }}>
+      <h1>Korean Air x Insider LMS Text Counter</h1>
+      <textarea
+        style={{ width: "80%", height: "100px", marginBottom: "10px" }}
+        placeholder="메시지를 입력하세요..."
+        value={text}
+        onChange={handleChange}
+      />
+      <div>바이트 수: {byteCount} / {maxBytes}</div>
+      <button disabled={byteCount > maxBytes} style={{ marginTop: "10px" }}>
+        검증 완료
+      </button>
     </div>
   );
 }
