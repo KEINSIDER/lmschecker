@@ -40,15 +40,11 @@ export default function KoreanAirLMSCounter() {
   const [byteCount, setByteCount] = useState(0);
   const maxBytes = 2610;
 
-// 바이트 수를 정확히 계산하는 함수
-  const calculateBytes = (input) => {
-    let byteCount = 0;
-    for (let i = 0; i < input.length; i++) {
-      // 한글은 3바이트, 영어는 1바이트로 처리
-      byteCount += input.charCodeAt(i) > 255 ? 3 : 1;
-    }
-    return byteCount;
-  };
+const calculateBytes = (input) => {
+  const encoder = new TextEncoder();
+  return encoder.encode(input).length;
+};
+
 
   const handleChange = (e) => {
     const inputText = e.target.value;
