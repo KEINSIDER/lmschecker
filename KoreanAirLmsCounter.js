@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";  // 상대경로로 수정
-import { Textarea } from "@/components/ui/textarea";  // 상대경로로 수정
-import { Button } from "@/components/ui/button";  // 상대경로로 수정
+import Card from "@/components/ui/card";
+import Textarea from "@/components/ui/textarea";
+import Button from "@/components/ui/button";
 
 export default function KoreanAirLMSCounter() {
   const [text, setText] = useState("");
