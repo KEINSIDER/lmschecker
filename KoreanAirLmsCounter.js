@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Card from "@/components/ui/card";
-import Textarea from "@/components/ui/textarea";
-import Button from "@/components/ui/button";
+import card from "@/components/ui/card";
+import textarea from "@/components/ui/textarea";
+import button from "@/components/ui/button";
 
 export default function KoreanAirLMSCounter() {
   const [text, setText] = useState("");
