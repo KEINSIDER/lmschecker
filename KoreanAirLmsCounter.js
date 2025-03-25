@@ -21,6 +21,7 @@ const styles = {
     fontWeight: "bold",
     fontSize: "18px !important", // 🔥 강제 적용
     width: "100%",
+    marginTop: "24px", // 버튼과 바이트 수 사이 간격 추가
   },
   textarea: {
     width: "100%", // 넓이 100%로 설정
@@ -93,7 +94,7 @@ export default function KoreanAirLMSCounter() {
           onChange={handleChange}
           style={styles.textarea}
         />
-      <div style={styles.byteCount} className="mb-4">
+      <div style={styles.byteCount} className="mb-6">
           바이트 수: {byteCount} / {maxBytes}
         </div>
 
