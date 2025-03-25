@@ -23,8 +23,8 @@ const styles = {
     width: "100%",
   },
   textarea: {
-    width: "70%", // 넓이 70%로 설정
-    height: "350px", // 높이를 크게 설정
+    width: "100%", // 넓이 100%로 설정
+    height: "450px", // 높이를 크게 설정
     padding: "12px",
     border: "1px solid #ccc",
     borderRadius: "5px",
@@ -86,7 +86,7 @@ export default function KoreanAirLMSCounter() {
       <h1 style={styles.header}>Korean Air x Insider LMS Text Counter</h1>
 
       {/* 🔹 입력창 및 바이트 카운터 */}
-      <div className="w-full max-w-2xl p-6 shadow-lg rounded-lg bg-white">
+      <div className="w-full max-w-4xl p-6 shadow-lg rounded-lg bg-white">
         <textarea
           placeholder="메시지를 입력하세요..."
           value={text}
