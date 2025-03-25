@@ -51,7 +51,7 @@ const styles = {
 export default function KoreanAirLMSCounter() {
   const [text, setText] = useState("");
   const [byteCount, setByteCount] = useState(0);
-  const maxBytes = 2610;
+  const maxBytes = 2760;
 
   const calculateBytes = (input) => {
     const encoder = new TextEncoder();
