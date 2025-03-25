@@ -86,7 +86,7 @@ export default function KoreanAirLMSCounter() {
       <h1 style={styles.header}>Korean Air x Insider LMS Text Counter</h1>
 
       {/* 🔹 입력창 및 바이트 카운터 */}
-      <div className="w-full max-w-7xl p-6 shadow-lg rounded-lg bg-white">
+      <div className="w-full max-w-full p-6 shadow-lg rounded-lg bg-white">
         <textarea
           placeholder="메시지를 입력하세요..."
           value={text}
