@@ -21,6 +21,7 @@ const styles = {
     fontWeight: "bold",
     fontSize: "18px !important", // 🔥 강제 적용
     width: "100%",
+    position: "relative",
   },
   textarea: {
     width: "100%", // 넓이 100%로 설정함
@@ -53,12 +54,32 @@ const styles = {
     fontWeight: "bold",
     color: "#051766",
   },
+   tooltip: {
+    visibility: "hidden",
+    backgroundColor: "#333",
+    color: "#fff",
+    textAlign: "center",
+    padding: "5px 10px",
+    borderRadius: "5px",
+    position: "absolute",
+    bottom: "100%",
+    left: "50%",
+    transform: "translateX(-50%)",
+    opacity: 0,
+    transition: "opacity 0.3s ease-in-out, visibility 0.3s ease-in-out",
+    whiteSpace: "nowrap",
+  },
+  tooltipVisible: {
+    visibility: "visible",
+    opacity: 1,
+  },
 };
 
 export default function KoreanAirLMSCounter() {
   const [text, setText] = useState("");
   const [byteCount, setByteCount] = useState(0);
   const [status, setStatus] = useState(""); // 상태 메시지 추가
+  const [showTooltip, setShowTooltip] = useState(false);
   const maxBytes = 2760;
 
   const calculateBytes = (input) => {
@@ -99,28 +120,27 @@ export default function KoreanAirLMSCounter() {
           바이트 수: {byteCount} / {maxBytes}
         </div>
 
-      {/* 🔹 툴팁 기능 추가 */}
-        <div style={styles.tooltipContainer}>
+      {/* 검증 완료 버튼 */}
+        <div style={{ position: "relative", display: "inline-block" }}>
           <button
             style={styles.button}
-            disabled={byteCount > maxBytes}
-            onClick={handleClick}
-            onMouseOver={(e) => {
-              const tooltip = e.currentTarget.nextSibling;
-              tooltip.style.visibility = "visible";
-              tooltip.style.opacity = "1";
-            }}
-            onMouseOut={(e) => {
-              const tooltip = e.currentTarget.nextSibling;
-              tooltip.style.visibility = "hidden";
-              tooltip.style.opacity = "0";
-            }}
+            onClick={handleClick} // 버튼 클릭 시 상태 메시지 변경
+            onMouseOver={() => setShowTooltip(true)}
+            onMouseOut={() => setShowTooltip(false)}
           >
             검증 완료
           </button>
-          <div style={styles.tooltip}>Too Many Bytes! 메시지가 너무 길어요!</div>
+          <div
+            style={{
+              ...styles.tooltip,
+              ...(showTooltip ? styles.tooltipVisible : {}),
+            }}
+          >
+            최대 {maxBytes}바이트까지 입력 가능
+          </div>
         </div>
 
+        {/* 상태 메시지 */}
         {status && <div style={styles.statusMessage}>{status}</div>}
       </div>
     </div>
