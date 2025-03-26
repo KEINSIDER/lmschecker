@@ -134,7 +134,7 @@ export default function KoreanAirLMSCounter() {
           Byte Count: {byteCount} / {maxBytes}
         </div>
 
-      {/* 검증 완료 버튼 */}
+      {/* 검증 하기 버튼 */}
         <div style={{ position: "relative", display: "inline-block" }}>
           <button
             style={styles.button}
