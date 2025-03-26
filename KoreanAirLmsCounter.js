@@ -20,11 +20,9 @@ const styles = {
     cursor: "pointer",
     fontWeight: "bold",
     fontSize: "18px !important", // 🔥 강제 적용
-    width: "100%",
-    position: "relative",
-    display: "inline-block", // 버튼을 가로 정렬
-    margin: "0 1%", // 버튼 간격 조정
-  },
+    width: "auto", // 버튼 너비 자동 설정
+    margin: "0 10px", // 버튼 간격 조정
+},
   textarea: {
     width: "100%", // 넓이 100%로 설정함
     height: "600px", // 높이를 크게 설정
@@ -164,9 +162,10 @@ export default function KoreanAirLMSCounter() {
         </div>
 
      {/* JSON 변환 버튼 */}
-        <div style={{ position: "relative", display: "flex", justifyContent: "center", marginTop: "12px" }}>
-          <button style={styles.button} onClick={convertToJson}>Convert to JSON</button>
-        </div>
+        <div style={{ position: "relative", display: "flex", justifyContent: "center" }}>
+       <button style={styles.button} onClick={handleClick}>Verify</button>
+       <button style={styles.button} onClick={convertToJson}>Convert to JSON</button>
+       </div>
 
         {/* JSON 출력 */}
         {jsonOutput && (
