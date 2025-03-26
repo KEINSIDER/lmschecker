@@ -167,12 +167,6 @@ export default function KoreanAirLMSCounter() {
   </div>
 </div>
 
-     {/* JSON 변환 버튼 */}
-        <div style={{ position: "relative", display: "flex", justifyContent: "center" }}>
-       <button style={styles.button} onClick={handleClick}>Verify</button>
-       <button style={styles.button} onClick={convertToJson}>Convert to JSON</button>
-       </div>
-
         {/* JSON 출력 */}
         {jsonOutput && (
           <textarea readOnly value={jsonOutput} style={styles.jsonOutput} />
