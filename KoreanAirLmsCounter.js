@@ -23,7 +23,7 @@ const styles = {
     width: "100%",
   },
   textarea: {
-    width: "100%", // 넓이 100%로 설정
+    width: "100%", // 넓이 100%로 설정함
     height: "600px", // 높이를 크게 설정
     padding: "12px",
     border: "1px solid #ccc",
