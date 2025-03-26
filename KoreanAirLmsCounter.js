@@ -22,8 +22,8 @@ const styles = {
     fontSize: "18px !important", // 🔥 강제 적용
     width: "100%",
     position: "relative",
-    display: "block", // 버튼 가운데 정렬을 위해 block 지정
-    margin: "0 auto", // 가운데 정렬
+    display: "inline-block", // 버튼을 가로 정렬
+    margin: "0 1%", // 버튼 간격 조정
   },
   textarea: {
     width: "100%", // 넓이 100%로 설정함
@@ -122,8 +122,9 @@ export default function KoreanAirLMSCounter() {
     const jsonData = {
       MESSAGE: text,
     };
-    setJsonOutput(JSON.stringify(jsonData, null, 2));
+   setText(JSON.stringify(jsonData, null, 2)); // 🔹 JSON을 입력창에 직접 출력
   };
+
   
   return (
     <div style={styles.container}>
