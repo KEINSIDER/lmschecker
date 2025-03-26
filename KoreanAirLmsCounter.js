@@ -115,7 +115,6 @@ export default function KoreanAirLMSCounter() {
   setStatus(""); // 입력할 때마다 상태 초기화
 };
 
-const maxBytes = 2650;  // 바이트 수 최대값
 const maxChars = 1000;  // 글자 수 최대값
   
  const handleClick = () => {
