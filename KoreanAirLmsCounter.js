@@ -12,7 +12,7 @@ const styles = {
     minHeight: "100vh",
   },
   button: {
-    padding: "12px 20px",
+    padding: "24px 40px", // 버튼 크기 두 배로 증가
     backgroundColor: "#57BBEB !important", // 🔥 강제 적용
     color: "#051766 !important", // 🔥 강제 적용
     border: "none",
@@ -21,6 +21,9 @@ const styles = {
     fontWeight: "bold",
     fontSize: "18px !important", // 🔥 강제 적용
     width: "100%",
+    position: "relative",
+    display: "block", // 버튼 가운데 정렬을 위해 block 지정
+    margin: "0 auto", // 가운데 정렬
   },
   textarea: {
     width: "100%", // 넓이 100%로 설정함
@@ -105,7 +108,7 @@ export default function KoreanAirLMSCounter() {
   return (
     <div style={styles.container}>
       {/* 🔹 상단 제목 */}
-      <h1 style={styles.header}>Korean Air x Insider LMS Text Counter</h1>
+      <h1 style={styles.header}>Korean Air LMS Byte Checker</h1>
 
      {/* 🔹 입력창 & 바이트 카운터 & 버튼 */}
     <div className="w-full max-w-screen-xl p-6 shadow-lg rounded-lg bg-white">
@@ -116,7 +119,7 @@ export default function KoreanAirLMSCounter() {
           style={styles.textarea}
         />
       <div style={styles.byteCount} className="mb-4">
-          바이트 수: {byteCount} / {maxBytes}
+          Byte Count: {byteCount} / {maxBytes}
         </div>
 
       {/* 검증 완료 버튼 */}
@@ -127,7 +130,7 @@ export default function KoreanAirLMSCounter() {
             onMouseOver={() => setShowTooltip(true)}
             onMouseOut={() => setShowTooltip(false)}
           >
-            검증 완료
+            Verify
           </button>
           <div
             style={{
