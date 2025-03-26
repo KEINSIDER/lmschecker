@@ -90,6 +90,7 @@ const styles = {
 export default function KoreanAirLMSCounter() {
   const [text, setText] = useState("");
   const [byteCount, setByteCount] = useState(0);
+  const [charCount, setCharCount] = useState(0); // 🔹 공백 및 개행 제외 글자 수 추가
   const [status, setStatus] = useState(""); // 상태 메시지 추가
   const [jsonOutput, setJsonOutput] = useState(""); // 🔹 JSON 출력 상태 추가
   const [showTooltip, setShowTooltip] = useState(false);
@@ -99,12 +100,18 @@ export default function KoreanAirLMSCounter() {
     const encoder = new TextEncoder();
     return encoder.encode(input).length;
   };
-
-  const handleChange = (e) => {
+  
+  const calculateCharacters = (input) => {
+    return input.replace(/\s/g, "").length;
+  };
+  
+   const handleChange = (e) => {
     const inputText = e.target.value;
     const bytes = calculateBytes(inputText);
+    const chars = calculateCharacters(inputText);
     setText(inputText);
     setByteCount(bytes);
+    setCharCount(chars);
     setStatus(""); // 🔹 입력할 때마다 상태 초기화
   };
 
@@ -139,6 +146,9 @@ export default function KoreanAirLMSCounter() {
         />
       <div style={styles.byteCount} className="mb-4">
           Byte Count: {byteCount} / {maxBytes}
+        </div>
+      <div style={styles.byteCount} className="mb-4">
+          Character Count (excluding spaces & newlines): {charCount}
         </div>
 
       {/* 검증 하기 버튼 */}
