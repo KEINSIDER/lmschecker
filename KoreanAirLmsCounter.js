@@ -90,7 +90,7 @@ const styles = {
 export default function KoreanAirLMSCounter() {
   const [text, setText] = useState("");
   const [byteCount, setByteCount] = useState(0);
-  const [charCount, setCharCount] = useState(0); // 🔹 공백 및 개행 제외 글자 수 추가
+  const [charCount, setCharCount] = useState(0); // 공백만 제외한 글자 수
   const [status, setStatus] = useState(""); // 상태 메시지 추가
   const [jsonOutput, setJsonOutput] = useState(""); // 🔹 JSON 출력 상태 추가
   const [showTooltip, setShowTooltip] = useState(false);
@@ -101,27 +101,30 @@ export default function KoreanAirLMSCounter() {
     return encoder.encode(input).length;
   };
   
-  const calculateCharacters = (input) => {
-    return input.replace(/\s/g, "").length;
-  };
+ const calculateCharacters = (input) => {
+  return input.replace(/\s/g, "").length; // 공백만 제외하고 글자 수 세기
+};
   
    const handleChange = (e) => {
-    const inputText = e.target.value;
-    const bytes = calculateBytes(inputText);
-    const chars = calculateCharacters(inputText);
-    setText(inputText);
-    setByteCount(bytes);
-    setCharCount(chars);
-    setStatus(""); // 🔹 입력할 때마다 상태 초기화
-  };
+  const inputText = e.target.value;
+  const bytes = calculateBytes(inputText);
+  const chars = calculateCharacters(inputText); // 공백만 제외한 글자 수 계산
+  setText(inputText);
+  setByteCount(bytes);
+  setCharCount(chars); // 글자 수 업데이트
+  setStatus(""); // 입력할 때마다 상태 초기화
+};
 
+const maxBytes = 2650;  // 바이트 수 최대값
+const maxChars = 1000;  // 글자 수 최대값
+  
  const handleClick = () => {
-    if (byteCount <= maxBytes) {
-      setStatus("✅ OK TO GO!");
-    } else {
-      setStatus("❌ Too Many Bytes!");
-    }
-  };
+  if (byteCount <= maxBytes && charCount <= maxChars) {
+    setStatus("✅ OK TO GO!");
+  } else {
+    setStatus("❌ Too Many Bytes or Characters!");
+  }
+};
 
    const convertToJson = () => {
     const jsonData = {
@@ -147,9 +150,9 @@ export default function KoreanAirLMSCounter() {
       <div style={styles.byteCount} className="mb-4">
           Byte Count: {byteCount} / {maxBytes}
         </div>
-      <div style={styles.byteCount} className="mb-4">
-          Character Count (excluding spaces & newlines): {charCount}
-        </div>
+     <div style={styles.byteCount} className="mb-4">
+         Character Count (Excl. spaces): {charCount} / {maxChars}
+       </div>
 
       {/* 검증 하기 버튼 */}
      <div style={{ position: "relative", display: "flex", justifyContent: "center", gap: "10px" }}>
@@ -173,7 +176,7 @@ export default function KoreanAirLMSCounter() {
       ...(showTooltip ? styles.tooltipVisible : {}),
     }}
   >
-    최대 {maxBytes}바이트까지 입력 가능
+    최대 {maxBytes}바이트, {maxChars}자 까지 입력 가능
   </div>
 </div>
 
