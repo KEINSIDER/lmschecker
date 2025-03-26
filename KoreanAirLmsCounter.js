@@ -35,6 +35,7 @@ const styles = {
   },
   byteCount: {
     marginTop: "12px",
+    marginBottom: "20px", // 🔹 버튼과 간격 추가
     textAlign: "right",
     fontWeight: "bold",
     fontSize: "16px !important", // 🔥 강제 적용
@@ -70,13 +71,14 @@ export default function KoreanAirLMSCounter() {
     const bytes = calculateBytes(inputText);
     setText(inputText);
     setByteCount(bytes);
+    setStatus(""); // 🔹 입력할 때마다 상태 초기화
   };
 
-  const handleClick = () => {
+ const handleClick = () => {
     if (byteCount <= maxBytes) {
-      setStatus("OK TO GO!"); // 한도 이내일 경우
+      setStatus("✅ OK TO GO!");
     } else {
-      setStatus("Too Many Bytes!"); // 한도 초과일 경우
+      setStatus("❌ Too Many Bytes!");
     }
   };
 
@@ -86,7 +88,7 @@ export default function KoreanAirLMSCounter() {
       <h1 style={styles.header}>Korean Air x Insider LMS Text Counter</h1>
 
      {/* 🔹 입력창 & 바이트 카운터 & 버튼 */}
-      <div className="w-full max-w-[1600px] p-6 shadow-lg rounded-lg bg-white">
+    <div className="w-full max-w-screen-xl p-6 shadow-lg rounded-lg bg-white">
         <textarea
           placeholder="메시지를 입력하세요..."
           value={text}
@@ -97,16 +99,28 @@ export default function KoreanAirLMSCounter() {
           바이트 수: {byteCount} / {maxBytes}
         </div>
 
-        {/* 검증 완료 버튼 */}
-        <button
-          style={styles.button}
-          disabled={byteCount > maxBytes}
-          onClick={handleClick} // 버튼 클릭 시 상태 메시지 변경
-        >
-          검증 완료
-        </button>
+      {/* 🔹 툴팁 기능 추가 */}
+        <div style={styles.tooltipContainer}>
+          <button
+            style={styles.button}
+            disabled={byteCount > maxBytes}
+            onClick={handleClick}
+            onMouseOver={(e) => {
+              const tooltip = e.currentTarget.nextSibling;
+              tooltip.style.visibility = "visible";
+              tooltip.style.opacity = "1";
+            }}
+            onMouseOut={(e) => {
+              const tooltip = e.currentTarget.nextSibling;
+              tooltip.style.visibility = "hidden";
+              tooltip.style.opacity = "0";
+            }}
+          >
+            검증 완료
+          </button>
+          <div style={styles.tooltip}>Too Many Bytes! 메시지가 너무 길어요!</div>
+        </div>
 
-        {/* 상태 메시지 */}
         {status && <div style={styles.statusMessage}>{status}</div>}
       </div>
     </div>
