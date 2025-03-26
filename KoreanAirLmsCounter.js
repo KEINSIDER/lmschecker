@@ -142,24 +142,30 @@ export default function KoreanAirLMSCounter() {
         </div>
 
       {/* 검증 하기 버튼 */}
-        <div style={{ position: "relative", display: "inline-block" }}>
-          <button
-            style={styles.button}
-            onClick={handleClick} // 버튼 클릭 시 상태 메시지 변경
-            onMouseOver={() => setShowTooltip(true)}
-            onMouseOut={() => setShowTooltip(false)}
-          >
-            Verify
-          </button>
-          <div
-            style={{
-              ...styles.tooltip,
-              ...(showTooltip ? styles.tooltipVisible : {}),
-            }}
-          >
-            최대 {maxBytes}바이트까지 입력 가능
-          </div>
-        </div>
+     <div style={{ position: "relative", display: "flex", justifyContent: "center", gap: "10px" }}>
+     <button
+     style={styles.button}
+     onClick={handleClick} // ✅ 툴팁 포함된 Verify 버튼 유지
+     onMouseOver={() => setShowTooltip(true)}
+     onMouseOut={() => setShowTooltip(false)}
+     >
+     Verify
+     </button>
+
+  <button style={styles.button} onClick={convertToJson}>
+    Convert to JSON
+  </button>
+
+  {/* ✅ 툴팁 */}
+  <div
+    style={{
+      ...styles.tooltip,
+      ...(showTooltip ? styles.tooltipVisible : {}),
+    }}
+  >
+    최대 {maxBytes}바이트까지 입력 가능
+  </div>
+</div>
 
      {/* JSON 변환 버튼 */}
         <div style={{ position: "relative", display: "flex", justifyContent: "center" }}>
