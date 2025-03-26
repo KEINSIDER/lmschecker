@@ -93,6 +93,7 @@ export default function KoreanAirLMSCounter() {
   const [text, setText] = useState("");
   const [byteCount, setByteCount] = useState(0);
   const [status, setStatus] = useState(""); // 상태 메시지 추가
+  const [jsonOutput, setJsonOutput] = useState(""); // 🔹 JSON 출력 상태 추가
   const [showTooltip, setShowTooltip] = useState(false);
   const maxBytes = 2650;
 
@@ -117,6 +118,13 @@ export default function KoreanAirLMSCounter() {
     }
   };
 
+   const convertToJson = () => {
+    const jsonData = {
+      MESSAGE: text,
+    };
+    setJsonOutput(JSON.stringify(jsonData, null, 2));
+  };
+  
   return (
     <div style={styles.container}>
       {/* 🔹 상단 제목 */}
