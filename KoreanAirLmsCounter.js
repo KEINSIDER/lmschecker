@@ -56,6 +56,18 @@ const styles = {
     fontWeight: "bold",
     color: "#051766",
   },
+   jsonOutput: {
+    width: "100%",
+    height: "200px",
+    padding: "12px",
+    border: "1px solid #ccc",
+    borderRadius: "5px",
+    marginTop: "12px",
+    backgroundColor: "#f4f4f4",
+    fontSize: "16px",
+    color: "#333",
+    whiteSpace: "pre-wrap",
+  },
    tooltip: {
     visibility: "hidden",
     backgroundColor: "#333",
@@ -141,6 +153,16 @@ export default function KoreanAirLMSCounter() {
             최대 {maxBytes}바이트까지 입력 가능
           </div>
         </div>
+
+     {/* JSON 변환 버튼 */}
+        <div style={{ position: "relative", display: "flex", justifyContent: "center", marginTop: "12px" }}>
+          <button style={styles.button} onClick={convertToJson}>Convert to JSON</button>
+        </div>
+
+        {/* JSON 출력 */}
+        {jsonOutput && (
+          <textarea readOnly value={jsonOutput} style={styles.jsonOutput} />
+        )}
 
         {/* 상태 메시지 */}
         {status && <div style={styles.statusMessage}>{status}</div>}
