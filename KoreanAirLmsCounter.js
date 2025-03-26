@@ -21,7 +21,6 @@ const styles = {
     fontWeight: "bold",
     fontSize: "18px !important", // 🔥 강제 적용
     width: "100%",
-    position: "relative",
   },
   textarea: {
     width: "100%", // 넓이 100%로 설정함
