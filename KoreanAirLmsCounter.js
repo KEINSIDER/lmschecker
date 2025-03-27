@@ -94,7 +94,7 @@ export default function KoreanAirLMSCounter() {
   const [status, setStatus] = useState(""); // 상태 메시지 추가
   const [jsonOutput, setJsonOutput] = useState(""); // 🔹 JSON 출력 상태 추가
   const [showTooltip, setShowTooltip] = useState(false);
-  const maxBytes = 2650;
+  const maxBytes = 2600;
 
   const calculateBytes = (input) => {
     const encoder = new TextEncoder();
